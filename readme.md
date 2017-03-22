@@ -1,6 +1,6 @@
 ![Cheeen~](http://i.imgur.com/Zkvz0Nm.png)
 # Chen
-Smol node.js tool to parse cli arguments and load config
+Smol node.js tool to parse cli arguments, env and load config
 
 ## CLI arguments parser
 ### index.js
@@ -44,3 +44,13 @@ You can safely access config properties using ``config.get(prop)``, where ``prop
 Also, you can safely access cli arguments using ``config.get('args')``.
 
 You can access config object using ``config.resolve()``. However, you can't mutate config object.
+
+## Env parser
+### Examples
+``A=1 B={"a": 1} C=string! node index.js``
+```
+const env = require('chen').env;
+env['A'] === 1;
+env['B'].a === 1;
+env['C'] === 'string!';
+```
