@@ -50,11 +50,21 @@ Also, you can safely access cli arguments using ``config.get('args')``.
 You can access config object using ``config.resolve()``. However, you can't mutate config object.
 
 ## Env parser
+
+Loads and parses environment variables and .env files (via dotenv package).
+
 ### Examples
 ``A=1 B={"a": 1} C=string! node index.js``
+
 ```
-const env = require('chen').env;
+.env
+TEST=1337
+```
+
+```
+const env = require('chen').env();
 env['A'] === 1;
 env['B'].a === 1;
 env['C'] === 'string!';
+env.TEST === 1337;
 ```

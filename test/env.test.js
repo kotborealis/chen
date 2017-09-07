@@ -11,8 +11,6 @@ describe('env parser', () => {
 
     const parsed = env(env_data);
 
-    console.log(parsed);
-
     it('should parse numbers', () => {
         expect(parsed.num).to.equal(1);
     });
@@ -23,5 +21,9 @@ describe('env parser', () => {
 
     it('should parse strings', () => {
         expect(parsed.string).to.equal('yep!');
+    });
+
+    it('should user dotenv to parse .env file', () => {
+        expect(parsed.TEST_NUM).to.equal(1337);
     });
 });
