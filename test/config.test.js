@@ -43,5 +43,9 @@ describe('config loader', () => {
     it('should load .dotconfig', () => {
         config('.test_config');
         expect(config.get('ass_we_can')).to.eql("Wrestling");
+
+        config('.test_config', '.test_config_default');
+        expect(config.get('ass_we_can')).to.eql("Wrestling");
+        expect(config.get('faf')).to.eql("fof");
     });
 });
