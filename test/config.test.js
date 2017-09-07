@@ -40,12 +40,21 @@ describe('config loader', () => {
         expect((config.get('chat.api'))()).to.eql(1);
     });
 
-    it('should load .dotconfig', () => {
-        config('.test_config');
+    it('should load specified config', () => {
+        config('config/.test_config');
         expect(config.get('ass_we_can')).to.eql("Wrestling");
+    });
 
-        config('.test_config', '.test_config_default');
+    it('should load specified default config', () => {
+        config('config/.test_config', 'config/.test_config_default');
         expect(config.get('ass_we_can')).to.eql("Wrestling");
         expect(config.get('faf')).to.eql("fof");
+    });
+
+    it('should work w/ multiple default configs', () => {
+        config('config/.test_config', ['config/.test_config_default', 'config/.test_config_default2']);
+        expect(config.get('ass_we_can')).to.eql("Wrestling");
+        expect(config.get('faf')).to.eql("fof");
+        expect(config.get('fof')).to.eql("faf");
     });
 });
