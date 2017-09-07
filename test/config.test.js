@@ -39,4 +39,9 @@ describe('config loader', () => {
         config.load();
         expect((config.get('chat.api'))()).to.eql(1);
     });
+
+    it('should load .dotconfig', () => {
+        config('.test_config');
+        expect(config.get('ass_we_can')).to.eql("Wrestling");
+    });
 });

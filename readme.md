@@ -34,10 +34,14 @@ argv = {
 ## Config loader
 ### Examples
 ```
-const config = require('chen').config;
-config.load();
+const config = require('chen').config; // loads default config
+config('.config.js'); // loads .config.js and overrides it with values from args
 ```
-Loads default config (``${cwd}/config/default.js``), **overrides** it with config file, specified by cli arguments (``--config ./path/to/config.js``) and **overrides** it with cli arguments options that starts with ``--config.`` (like ``--config.something.somebody false`` will override ``something.somebody`` in loaded config).
+By default, tries to load ``${cwd}/config/default.js``.
+If called with string as an argument, trues to load specified file.
+
+Values from file can be **overridden** by config file, specified by cli arguments (``--config ./path/to/config.js``)
+and by cli arguments options that starts with ``--config.`` (like ``--config.something.somebody false`` will override ``something.somebody`` in loaded config).
 
 You can safely access config properties using ``config.get(prop)``, where ``prop`` can be property name or property path (like ``a.b.c.d.e``).
 
