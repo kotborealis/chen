@@ -9,14 +9,15 @@ const args = require('chen').args;
 const argv = args();
 ```
 #### Examples
-``node index.js --prop value --flag -abc just some args``
+``node index.js --prop value --flag -abc just some args --type=pdf``
 ```
 argv = {
 	_: ['just', 'some', 'args'],
 	prop: 'value',
 	flag: true,
 	a: true,
-	b: true
+	b: true,
+	type: 'pdf'
 };
 ```
 
