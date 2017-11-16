@@ -3,7 +3,7 @@ const expect = require('chai').expect;
 const args = require('../lib/args');
 
 describe('arguments parser', () => {
-    const _ = args('non-hyphenated-1 --flag1 --flag2 -abc --value1 1 --value2 2 non-hyphenated-2'.split(' '));
+    const _ = args('non-hyphenated-1 --flag1 --flag2 -abc --value1 1 --value2 2 non-hyphenated-2 --format=pdf "e=mc^2"'.split(' '));
 
     it('should parse flags', () => {
         expect(_).to.contain.all.keys('flag1', 'flag2');
@@ -23,6 +23,12 @@ describe('arguments parser', () => {
 
     it('should parse non-hyphenated args', () => {
         expect(_).to.contain.all.keys('_');
-        expect(_._).eql(['non-hyphenated-1', 'non-hyphenated-2']);
+        expect(_._).eql(['non-hyphenated-1', 'non-hyphenated-2', 'e=mc^2']);
+    });
+
+    it('should parse =-delimited args', () => {
+        expect(_).to.contain.all.keys('format');
+        expect(_.format).to.equal('pdf');
+        expect(_).to.not.contain.keys('e');
     });
 });
