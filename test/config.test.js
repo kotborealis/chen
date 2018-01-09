@@ -2,6 +2,7 @@ const expect = require('chai').expect;
 
 const args_parser = require('../lib/args');
 const config = require('../lib/config');
+const env = require('../lib/env');
 
 describe('config loader', () => {
     it('should load default config', () => {
@@ -56,5 +57,11 @@ describe('config loader', () => {
         expect(config.get('ass_we_can')).to.eql("Wrestling");
         expect(config.get('faf')).to.eql("fof");
         expect(config.get('fof')).to.eql("faf");
+    });
+
+    it('should work w/ env vars', () => {
+        config('config/env_test');
+        expect(config.get('user')).to.eql(env().USER);
+        expect(config.get('TEST_NUM_ENV')).to.eql(env().TEST_NUM);
     });
 });
