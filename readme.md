@@ -1,11 +1,14 @@
 ![Cheeen~](http://i.imgur.com/Zkvz0Nm.png)
-# Chen
-Smol node.js tool to parse cli arguments, env and load config
+# Chen.js
+
+:smiley_cat: Node.JS tool to parse cli arguments, enviroment variables and load configs from .js files 
 
 ## CLI arguments parser
+
 ### index.js
+
 ```
-const args = require('chen').args;
+const args = require('chen.js').args;
 const argv = args();
 ```
 #### Examples
@@ -57,8 +60,8 @@ Loads and parses environment variables and .env files (via dotenv package).
 ### Examples
 ``A=1 B={"a": 1} C=string! node index.js``
 
-```
 .env
+```
 TEST=1337
 ```
 
