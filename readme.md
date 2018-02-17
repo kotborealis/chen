@@ -1,4 +1,4 @@
-![Cheeen~](http://i.imgur.com/Zkvz0Nm.png)
+![Cheeen~](./chen.png)
 # Chen.js
 
 :smiley_cat: Node.JS tool to parse cli arguments, enviroment variables and load configs from .js files 
