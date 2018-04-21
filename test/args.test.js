@@ -31,4 +31,14 @@ describe('arguments parser', () => {
         expect(_.format).to.equal('pdf');
         expect(_).to.not.contain.keys('e');
     });
+
+    it('fix', () => {
+        const _ = args(`--vyf`.split(' '));
+        expect(_.vyf).to.equal(true);
+    });
+    it('fix', () => {
+        const _ = args(`--faf --vyf`.split(' '));
+        expect(_.faf).to.equal(true);
+        expect(_.vyf).to.equal(true);
+    });
 });
