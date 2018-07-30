@@ -27,15 +27,6 @@ argv = {
 };
 ```
 
-``node index.js --json '{feels_good_man: 123}' --number 999999``
-```
-argv = {
-	_: [],
-	json: {feels_good_man: 123},
-	number: 999999
-};
-```
-
 ## Config loader
 
 ### Examples
