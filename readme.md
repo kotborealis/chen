@@ -1,4 +1,5 @@
-![Cheeen~](https://raw.githubusercontent.com/kotborealis/chen/d361c07bcface8eeb7cccf2698ffcb05becacb0c/chen.png)
+![Cheeen~](./img/chen.png)
+
 # Chen.js
 
 :smiley_cat: Node.JS tool to parse cli arguments, enviroment variables and load configs from .js files 
@@ -11,7 +12,9 @@
 const args = require('chen.js').args;
 const argv = args();
 ```
+
 #### Examples
+
 ``node index.js --prop value --flag -abc just some args --type=pdf``
 ```
 argv = {
@@ -24,8 +27,6 @@ argv = {
 };
 ```
 
-
-----------
 ``node index.js --json '{feels_good_man: 123}' --number 999999``
 ```
 argv = {
@@ -36,13 +37,15 @@ argv = {
 ```
 
 ## Config loader
+
 ### Examples
+
 ```
 const config = require('chen').config; // loads default config
 config('.config.js'); // loads .config.js and overrides it with values from args
 ```
 By default, tries to load ``${cwd}/config/default.js``.
-If called with string as an argument, trues to load specified file.
+If called with string as an argument, tries to load specified file.
 
 Values from file can be **overridden** by config file, specified by cli arguments (``--config ./path/to/config.js``)
 and by cli arguments options that starts with ``--config.`` (like ``--config.something.somebody false`` will override ``something.somebody`` in loaded config).
