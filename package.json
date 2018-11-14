@@ -12,11 +12,11 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "mocha": "^3.2.0"
+    "mocha": "^5.2.0"
   },
   "dependencies": {
     "debug": "^4.1.0",
-    "deep-extend": "^0.4.1",
+    "deep-extend": "^0.6.0",
     "dotenv": "^4.0.0"
   }
 }
