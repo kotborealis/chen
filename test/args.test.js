@@ -63,7 +63,7 @@ describe('arguments parser', () => {
     });
     it('regression test', () => {
         const _ = args(`--faf --vyf`.split(' '));
-        expect(_._).to.equal([]);
+        expect(_._).to.eql([]);
     });
 
     it('args frozen', () => {
