@@ -8,7 +8,7 @@
     "url": "https://github.com/kotborealis/chen.git"
   },
   "scripts": {
-    "test": "TEST_NUM=1337 mocha"
+    "test": "mocha"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -17,6 +17,7 @@
   "dependencies": {
     "debug": "^4.1.0",
     "deep-extend": "^0.6.0",
+    "deep-freeze": "0.0.1",
     "dotenv": "^4.0.0"
   }
 }

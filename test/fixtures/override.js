@@ -1,3 +1,3 @@
 module.exports = {
-    fof: "faf"
+    b: 10
 };

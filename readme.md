@@ -1,68 +1,76 @@
 ![Cheeen~](./img/chen.png)
 
-# Chen.js
+# Chen.js :smiley_cat:
 
 :smiley_cat: Node.JS tool to parse cli arguments, enviroment variables and load configs from .js files 
 
 ## CLI arguments parser
 
-### index.js
+```js
+// Called with args:
+// --prop 100 --flag -abc input output --type="pdf document"
 
-```
-const args = require('chen.js').args;
-const argv = args();
-```
+require('chen.js').args();
 
-#### Examples
-
-``node index.js --prop value --flag -abc just some args --type=pdf``
-```
-argv = {
-	_: ['just', 'some', 'args'],
-	prop: 'value',
+/**
+{
+	_: ['input', 'output'],
+	prop: 100,
 	flag: true,
 	a: true,
 	b: true,
-	type: 'pdf'
-};
+	type: 'pdf document'
+}
+**/
 ```
 
 ## Config loader
 
-### Examples
-
+```js
+/**
+* Loads `${PWD}/.config.js` by default
+*/
+const config = require('chen.js').config();
 ```
-const config = require('chen').config; // loads default config
-config('.config.js'); // loads .config.js and overrides it with values from args
+
+```js
+/**
+* Loads `${PWD}/.cfg.js`
+*/
+const config = require('chen.js').config('.cfg.js');
 ```
-By default, tries to load ``${cwd}/config/default.js``.
-If called with string as an argument, tries to load specified file.
 
-Values from file can be **overridden** by config file, specified by cli arguments (``--config ./path/to/config.js``)
-and by cli arguments options that starts with ``--config.`` (like ``--config.something.somebody false`` will override ``something.somebody`` in loaded config).
+```js
+/**
+* Loads `${PWD}/.config.js`
+* Loads `${PWD}/.config.dev.js` and overrides previous config
+*/
+const config = require('chen.js').config(['.config.js', '.config.dev.js']);
+```
 
-You can safely access config properties using ``config.get(prop)``, where ``prop`` can be property name or property path (like ``a.b.c.d.e``).
+```js
+/**
+* Assuming called with CLI args: --config=.config.dev.js
+* Loads `${PWD}/.config.js`
+* Loads `${PWD}/.config.dev.js` and overrides previous config
+*/
+const config = require('chen.js').config();
+```
 
-Also, you can safely access cli arguments using ``config.get('args')``.
-
-You can access config object using ``config.resolve()``. However, you can't mutate config object.
+```js
+/**
+* Assuming called with CLI args: --config=.config.dev.js --config=.config.dev2.js
+* Loads `${PWD}/.config.js`
+* Loads `${PWD}/.config.dev.js` and overrides previous config
+* Loads `${PWD}/.config.dev2.js` and overrides previous config
+*/
+const config = require('chen.js').config();
+```
 
 ## Env parser
 
 Loads and parses environment variables and .env files (via dotenv package).
 
-### Examples
-``A=1 B={"a": 1} C=string! node index.js``
-
-.env
-```
-TEST=1337
-```
-
-```
+```js
 const env = require('chen').env();
-env['A'] === 1;
-env['B'].a === 1;
-env['C'] === 'string!';
-env.TEST === 1337;
 ```

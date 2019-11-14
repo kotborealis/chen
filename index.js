@@ -1,1 +1,1 @@
-module.exports = require('./lib/chen.js');
+module.exports = require('./lib/index.js');
