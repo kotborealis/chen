@@ -41,12 +41,12 @@ describe('arguments parser', () => {
         expect(argv.e).equal(true);
     });
 
-    it('should parse `free` args', () => {
+    it('should parse unnamed args', () => {
         const argv = args('input.txt output.txt'.split(' '));
         expect(argv._).to.eql(['input.txt', 'output.txt']);
     });
 
-    it('should parse `free` args inside "" with spaces', () => {
+    it('should parse unnamed args inside "" with spaces', () => {
         const argv = args(['input.txt', 'output.txt', 'Program Files']);
         expect(argv._).to.eql(['input.txt', 'output.txt', 'Program Files']);
     });
@@ -72,5 +72,56 @@ describe('arguments parser', () => {
         _._.a = "test";
         expect(_.a).to.eql(undefined);
         expect(_._.a).to.eql(undefined);
+    });
+
+    it('treats all args after -- as unnamed args', () => {
+        const _ = args('-a -b -c -- -d -e f'.split(' '));
+
+        expect(_.a).equal(true);
+        expect(_.b).equal(true);
+        expect(_.c).equal(true);
+
+        expect(_.d).equal(undefined);
+        expect(_.e).equal(undefined);
+        expect(_.f).equal(undefined);
+
+        expect(_._).to.eql(['-d', '-e', 'f']);
+    });
+
+    it("assignment quoted", () => {
+        const _ = args([`--type="pdf format"`]);
+        expect(_.type).equal("pdf format");
+    });
+
+    it("quoted", () => {
+        const _ = args([`--type="pdf format"`, `"txt format"`, `'ass format'`]);
+        expect(_.type).equal("pdf format");
+        expect(_._[0]).equal("txt format");
+        expect(_._[1]).equal("ass format");
+    });
+
+    it('readme example', () => {
+        const _ = args([
+            `--prop`,
+            `100`,
+            `--flag`,
+            `-abc`,
+            `input`,
+            `output`,
+            `--type="pdf document"`,
+            `--`,
+            `"more unnamed args"`,
+            `-not-a-a-flag`
+        ]);
+
+        expect(_).to.deep.equal({
+            _: ['input', 'output', 'more unnamed args', '-not-a-a-flag'],
+            prop: 100,
+            flag: true,
+            a: true,
+            b: true,
+            c: true,
+            type: 'pdf document'
+        });
     });
 });

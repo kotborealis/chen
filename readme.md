@@ -8,18 +8,19 @@
 
 ```js
 // Called with args:
-// --prop 100 --flag -abc input output --type="pdf document"
+// --prop 100 --flag -abc input output --type="pdf document" -- "more unnamed args" -not-a-a-flag
 
 require('chen.js').args();
 
 /**
 {
-	_: ['input', 'output'],
+	_: ['input', 'output', 'more unnamed args', '-not-a-a-flag'],
 	prop: 100,
 	flag: true,
 	a: true,
 	b: true,
-	type: 'pdf document'
+    c: true,
+	type: 'pdf document',
 }
 **/
 ```
